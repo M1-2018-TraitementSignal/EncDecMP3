@@ -74,11 +74,18 @@ def fourierparpartie(data, debut, fin, taillefenetre):
     return res
 
 
-def conversionpropre(tab):
+
+def conversionpropre(tab, taillefenetre):
     print("Debut conversion ..................")
-    tab2 = [[0]] * len(tab)
-    for i in range(len(tab)):
-        tab2[i] = tab[i][0].tolist()
+    reste = len(tab[len(tab) - 1])
+    tab2 = []
+    for i in range(0, (len(tab) - 1)):
+        for j in range(0, taillefenetre):
+            tab2 = tab2 + tab[i][j].tolist()
+    if reste > 0:
+        j = len(tab) % taillefenetre - 1
+        for i in range(0,reste):
+            tab2 = tab2 + tab[j][i].tolist()
     tab2 = asarray(tab2)
     return tab2
 
